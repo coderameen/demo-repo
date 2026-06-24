@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Classic Arabic Café</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --primary:#6f4e37;
+    --secondary:#d4a574;
+    --dark:#1c1c1c;
+    --light:#faf7f2;
+    --glass:rgba(255,255,255,.12);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:var(--light);
+    overflow-x:hidden;
+    color:#333;
+}
+
+h1,h2,h3{
+    font-family:'Playfair Display',serif;
+}
+
+section{
+    padding:100px 10%;
+}
+
+.navbar{
+    position:fixed;
+    top:0;
+    width:100%;
+    z-index:1000;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 10%;
+    backdrop-filter:blur(15px);
+    background:rgba(0,0,0,.25);
+    transition:.4s;
+}
+
+.logo{
+    color:white;
+    font-size:2rem;
+    font-weight:700;
+}
+
+.nav-links{
+    display:flex;
+    gap:30px;
+}
+
+.nav-links a{
+    color:white;
+    text-decoration:none;
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    color:var(--secondary);
+}
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:white;
+    position:relative;
+    overflow:hidden;
+}
+
+.hero::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:
+    linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+    url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=1800&auto=format&fit=crop');
+    background-size:cover;
+    background-position:center;
+    animation:zoomBg 15s infinite alternate;
+}
+
+@keyframes zoomBg{
+    from{transform:scale(1);}
+    to{transform:scale(1.15);}
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+    max-width:900px;
+}
+
+.hero h1{
+    font-size:5rem;
+    margin-bottom:20px;
+    animation:slideUp 1s ease;
+}
+
+.hero p{
+    font-size:1.2rem;
+    margin-bottom:30px;
+    animation:slideUp 1.3s ease;
+}
+
+.btn{
+    display:inline-block;
+    padding:15px 35px;
+    background:var(--secondary);
+    color:white;
+    text-decoration:none;
+    border-radius:40px;
+    transition:.4s;
+    font-weight:600;
+}
+
+.btn:hover{
+    transform:translateY(-5px);
+    box-shadow:0 15px 30px rgba(0,0,0,.25);
+}
+
+@keyframes slideUp{
+    from{
+        opacity:0;
+        transform:translateY(50px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.floating{
+    position:absolute;
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    background:rgba(255,255,255,.1);
+    backdrop-filter:blur(10px);
+    animation:float 8s infinite ease-in-out;
+}
+
+.f1{
+    top:15%;
+    left:10%;
+}
+
+.f2{
+    right:10%;
+    bottom:15%;
+    animation-delay:2s;
+}
+
+@keyframes float{
+    50%{
+        transform:translateY(-30px);
+    }
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.section-title h2{
+    font-size:3rem;
+    color:var(--primary);
+}
+
+.about{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center;
+}
+
+.about img{
+    width:100%;
+    border-radius:20px;
+    box-shadow:0 20px 40px rgba(0,0,0,.15);
+}
+
+.about-content p{
+    margin:20px 0;
+    line-height:1.8;
+}
+
+.menu-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+}
+
+.menu-card{
+    background:white;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    transition:.4s;
+}
+
+.menu-card:hover{
+    transform:translateY(-10px);
+}
+
+.menu-card img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+}
+
+.menu-info{
+    padding:20px;
+}
+
+.price{
+    color:var(--primary);
+    font-weight:700;
+    margin-top:10px;
+}
+
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.gallery img{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+    border-radius:15px;
+    transition:.5s;
+}
+
+.gallery img:hover{
+    transform:scale(1.05);
+}
+
+.testimonials{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:30px;
+}
+
+.testimonial{
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.stars{
+    color:gold;
+    margin-bottom:15px;
+}
+
+.contact{
+    background:linear-gradient(135deg,var(--primary),#3b2619);
+    color:white;
+    border-radius:30px;
+    text-align:center;
+}
+
+.contact h2{
+    margin-bottom:20px;
+}
+
+.contact p{
+    margin:10px 0;
+}
+
+footer{
+    background:#111;
+    color:white;
+    text-align:center;
+    padding:25px;
+}
+
+.reveal{
+    opacity:0;
+    transform:translateY(40px);
+    transition:1s;
+}
+
+.reveal.active{
+    opacity:1;
+    transform:translateY(0);
+}
+
+@media(max-width:900px){
+
+.hero h1{
+    font-size:3rem;
+}
+
+.about{
+    grid-template-columns:1fr;
+}
+
+.nav-links{
+    display:none;
+}
+
+section{
+    padding:80px 7%;
+}
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+    <div class="logo">☕ Classic Arabic Café</div>
+    <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#menu">Menu</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+    </div>
+</nav>
+
+<section class="hero" id="home">
+    <div class="floating f1"></div>
+    <div class="floating f2"></div>
+
+    <div class="hero-content">
+        <h1>Experience Timeless Coffee Culture</h1>
+        <p>
+            Karak a India traditional Tea at Arab Kingdoms
+        </p>
+        <a href="#menu" class="btn">Explore Menu</a>
+    </div>
+</section>
+
+<section id="about" class="reveal">
+    <div class="section-title">
+        <h2>Our Story</h2>
+    </div>
+
+    <div class="about">
+        <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1200&auto=format&fit=crop" alt="">
+        <div class="about-content">
+            <h3>Crafting Coffee Since 1995</h3>
+            <p>
+                Classic Café blends traditional craftsmanship with modern
+                flavors. Every cup is carefully prepared from premium beans
+                sourced from renowned coffee-growing regions.
+            </p>
+            <p>
+                Whether you're here for a morning espresso, an afternoon
+                meeting, or a relaxing evening, our café creates a memorable
+                experience with elegance and warmth.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section id="menu" class="reveal">
+    <div class="section-title">
+        <h2>Signature Menu</h2>
+    </div>
+
+    <div class="menu-grid">
+
+        <div class="menu-card">
+            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1200&auto=format&fit=crop">
+            <div class="menu-info">
+                <h3>Classic Cappuccino</h3>
+                <p>Rich espresso topped with silky steamed milk foam.</p>
+                <div class="price">$5.99</div>
+            </div>
+        </div>
+
+        <div class="menu-card">
+            <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=1200&auto=format&fit=crop">
+            <div class="menu-info">
+                <h3>Caramel Latte</h3>
+                <p>Velvety coffee infused with caramel sweetness.</p>
+                <div class="price">$6.49</div>
+            </div>
+        </div>
+
+        <div class="menu-card">
+            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=1200&auto=format&fit=crop">
+            <div class="menu-info">
+                <h3>Fresh Croissant</h3>
+                <p>Golden buttery croissant baked every morning.</p>
+                <div class="price">$3.99</div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section id="gallery" class="reveal">
+    <div class="section-title">
+        <h2>Café Gallery</h2>
+    </div>
+
+    <div class="gallery">
+        <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?q=80&w=1200&auto=format&fit=crop">
+        <img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?q=80&w=1200&auto=format&fit=crop">
+        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1200&auto=format&fit=crop">
+        <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?q=80&w=1200&auto=format&fit=crop">
+    </div>
+</section>
+
+<section class="reveal">
+    <div class="section-title">
+        <h2>What Guests Say</h2>
+    </div>
+
+    <div class="testimonials">
+        <div class="testimonial">
+            <div class="stars">★★★★★</div>
+            <p>
+                Beautiful ambiance, excellent coffee, and wonderful service.
+            </p>
+        </div>
+
+        <div class="testimonial">
+            <div class="stars">★★★★★</div>
+            <p>
+                One of the most charming cafés I've visited. Highly recommended.
+            </p>
+        </div>
+
+        <div class="testimonial">
+            <div class="stars">★★★★★</div>
+            <p>
+                Perfect place for meetings and relaxing with premium coffee.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="contact reveal">
+    <h2>Visit Classic Café</h2>
+    <p>📍 123 Heritage Street, Downtown</p>
+    <p>📞 +1 (555) 123-4567</p>
+    <p>✉ hello@classiccafe.com</p>
+    <br>
+    <a href="#" class="btn">Reserve a Table</a>
+</section>
+
+<footer>
+    © 2026 Designed and Developed by Coderameen
+</footer>
+
+<script>
+
+const reveals = document.querySelectorAll('.reveal');
+
+function revealElements(){
+    reveals.forEach(el=>{
+        const top = el.getBoundingClientRect().top;
+        const visible = 120;
+
+        if(top < window.innerHeight - visible){
+            el.classList.add('active');
+        }
+    });
+}
+
+window.addEventListener('scroll', revealElements);
+revealElements();
+
+window.addEventListener('scroll',()=>{
+    const nav=document.querySelector('.navbar');
+
+    if(window.scrollY>80){
+        nav.style.background='rgba(0,0,0,.85)';
+    }else{
+        nav.style.background='rgba(0,0,0,.25)';
+    }
+});
+
+</script>
+
+</body>
+</html>
